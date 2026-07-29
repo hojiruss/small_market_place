@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Product
+from .models import Product
 
 class ProductsAdmin(admin.ModelAdmin):
     fields = ["name",
@@ -10,4 +10,4 @@ class ProductsAdmin(admin.ModelAdmin):
               "created_at",
               "updated_at"]
 
-admin.site.register(Products, ProductsAdmin)
+admin.site.register(Product, ProductsAdmin)
