@@ -6,8 +6,6 @@ class ProductsAdmin(admin.ModelAdmin):
               "price",
               "stock_quantity",
               "seller",
-              "description",
-              "created_at",
-              "updated_at"]
+              "description"]
 
 admin.site.register(Product, ProductsAdmin)
