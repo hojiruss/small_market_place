@@ -16,10 +16,9 @@ urlpatterns = [
     path('api/token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
-    path('',
-         RedirectView.as_view(url='/admin/', permanent=False)),
-    path('admin/',
-         admin.site.urls),
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),
+    path('admin/', admin.site.urls),
     path("", include(router.urls)),
-    path("api-auth/", include('rest_framework.urls'))
+    path("api-auth/", include('rest_framework.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
