@@ -11,5 +11,9 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=10,choices=(('buyer','Buyer'),('seller','Seller')),default='buyer')
+
 
 
