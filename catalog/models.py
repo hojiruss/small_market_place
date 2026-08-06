@@ -7,6 +7,8 @@ class Product(models.Model):
     stock_quantity = models.DecimalField(max_digits=1000, decimal_places=2)
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -14,6 +16,8 @@ class Product(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=10,choices=(('buyer','Buyer'),('seller','Seller')),default='buyer')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 

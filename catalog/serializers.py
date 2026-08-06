@@ -1,12 +1,18 @@
 from rest_framework import serializers
 from catalog.models import Product
 
-class ProductSerializer(serializers.Serializer):
+
+class ProductSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=200)
     price = serializers.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = serializers.DecimalField(max_digits=10, decimal_places=2)
     seller = serializers.IntegerField()
     description = serializers.CharField(max_length=200)
+    class Meta:
+        model = Product
+        fields = ('name','price','stock_quantity','seller','description')
+
+
     def create(self, validated_data):
         return Product.objects.create(**validated_data)
 
@@ -19,6 +25,6 @@ class ProductSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-    def delete(self,instance):
+    def delete(self, instance):
         instance.delete()
         return True
