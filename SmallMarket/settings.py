@@ -36,6 +36,8 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS","127.0.0.1").split(",")
 INSTALLED_APPS = [
     'django.contrib.admin',
     'catalog',
+    'redis',
+    'celery',
     'rest_framework',
     'django_filters',
     'django.contrib.auth',
@@ -140,3 +142,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
