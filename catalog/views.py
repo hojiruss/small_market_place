@@ -13,6 +13,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_fields = ['seller']
 
     def perform_create(self, serializer):
-        serializer.save(seller=self.request.user)
-        notify_new_product.delay(self.name)
+        instance = serializer.save(seller=self.request.user)
+        notify_new_product.delay(instance.name)
 
