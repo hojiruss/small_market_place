@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product,Profile
 
 class ProductsAdmin(admin.ModelAdmin):
     fields = ["name",
@@ -9,3 +9,4 @@ class ProductsAdmin(admin.ModelAdmin):
               "description"]
 
 admin.site.register(Product, ProductsAdmin)
+admin.site.register(Profile)

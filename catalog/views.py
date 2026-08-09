@@ -3,6 +3,7 @@ from catalog.permissions import IsOwnerOrReadOnly
 from .models import Product
 from catalog.serializers import ProductSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from catalog.tasks import notify_new_product
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
@@ -12,5 +13,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_fields = ['seller']
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(seller=self.request.user)
+        notify_new_product.delay(self.name)
 

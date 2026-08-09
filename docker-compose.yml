@@ -10,11 +10,21 @@ services:
       - ./.env
   db:
     image: postgres:15
+    ports:
+      - "5432:5432" 
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=hello_django
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_DB=hello_django_dev
+  redis:
+    image: redis:7-alpine
+  celery:
+    build: .
+    command: celery -A SmallMarket worker --loglevel=info
+    depends_on:
+      - redis
+      - db
 volumes:
   postgres_data:
