@@ -4,6 +4,7 @@ from django.views.generic import RedirectView
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework.routers import DefaultRouter
 from catalog import views
+from django.urls import re_path
 
 
 router = DefaultRouter()
@@ -22,3 +23,4 @@ urlpatterns = [
     path("api-auth/", include('rest_framework.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
